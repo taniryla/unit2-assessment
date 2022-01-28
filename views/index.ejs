@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Unit 2 Assessment</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>Grocery List</h1>
+    <% if (groceries.length === 0) { %>
+        <h3>There are no groceries yet!</h3>
+        <% } %>
+
+            <ul>
+                <% groceries.forEach((grocery, idx) => { %>
+                    <li>
+                        <%= grocery.grocery %>
+                            -
+                            <%= grocery.done ? 'Done' : 'Still Need' %>
+                                <form action="/groceries/<%= idx %>?_method=DELETE" method="POST">
+                                    <button type="submit">DELETE</button>
+                                </form>
+                    </li>
+                    <% }) %>
+            </ul>
+
+            <hr>
+            <form class="add" action="/groceries" method="POST">
+                <input type="text" name="grocery" required>
+                <button class="add-btn" type="submmit">ADD Grocery</button>
+            </form>
+</body>
+
+</html>
